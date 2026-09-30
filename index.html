@@ -4,14 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>CineTrack — Movie Tracker</title>
+  <title>CineTrack</title>
 
-  <!-- Tailwind CSS CDN -->
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+  </style>
+
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body
-  class="min-h-full bg-white text-zinc-950 antialiased transition-colors duration-200 dark:bg-zinc-950 dark:text-zinc-100"
+  class="min-h-full bg-brown text-zinc-950 antialiased transition-colors duration-200 dark:bg-zinc-950 dark:text-yellow-100"
 >
 
   <!-- ================= HEADER ================= -->
@@ -41,7 +44,7 @@
         aria-label="Toggle dark mode"
         class="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 text-sm transition hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-900"
       >
-        <span id="theme-icon">☾</span>
+        <span id="theme-icon">🌙</span>
       </button>
 
     </div>
