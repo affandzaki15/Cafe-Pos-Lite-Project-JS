@@ -1,91 +1,107 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Movie Tracker</title>
+  <title>CineTrack — Movie Tracker</title>
 
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body class="min-h-screen bg-zinc-950 text-zinc-100">
+<body
+  class="min-h-full bg-white text-zinc-950 antialiased transition-colors duration-200 dark:bg-zinc-950 dark:text-zinc-100"
+>
 
-  <!-- Header -->
-  <header class="border-b border-zinc-800">
-    <div class="mx-auto max-w-6xl px-6 py-6">
+  <!-- ================= HEADER ================= -->
+  <header class="border-b border-zinc-200 dark:border-zinc-800">
+    <div
+      class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 lg:px-8"
+    >
 
-      <div class="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+      <!-- Logo -->
+      <div>
+        <a
+          href="#"
+          class="text-lg font-semibold tracking-tight"
+        >
+          CineTrack
+        </a>
 
-        <div>
-          <p class="mb-1 text-sm font-medium text-amber-400">
-            MOVIE TRACKER
-          </p>
-
-          <h1 class="text-3xl font-semibold tracking-tight">
-            Find something worth watching.
-          </h1>
-
-          <p class="mt-2 max-w-xl text-sm text-zinc-400">
-            Search movies, save them to your watchlist, and keep track
-            of what you've already watched.
-          </p>
-        </div>
-
-        <div class="rounded-lg border border-zinc-800 bg-zinc-900 px-5 py-4">
-          <p class="text-xs uppercase tracking-wide text-zinc-500">
-            Your Library
-          </p>
-
-          <p id="total-movies" class="mt-1 text-2xl font-semibold">
-            0
-          </p>
-
-          <p class="text-sm text-zinc-500">
-            movies saved
-          </p>
-        </div>
-
+        <p class="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+          Your personal watchlist
+        </p>
       </div>
+
+      <!-- Theme Toggle -->
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Toggle dark mode"
+        class="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 text-sm transition hover:bg-zinc-100 dark:border-zinc-800 dark:hover:bg-zinc-900"
+      >
+        <span id="theme-icon">☾</span>
+      </button>
 
     </div>
   </header>
 
 
-  <main class="mx-auto max-w-6xl px-6 py-8">
+  <!-- ================= MAIN ================= -->
+  <main class="mx-auto max-w-7xl px-5 py-10 lg:px-8">
 
-    <!-- Search Section -->
-    <section>
+    <!-- ================= HERO ================= -->
+    <section class="max-w-3xl">
 
-      <div class="mb-4">
-        <h2 class="text-lg font-semibold">
-          Search Movies
-        </h2>
+      <p
+        class="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400"
+      >
+        Movie Tracker
+      </p>
 
-        <p class="text-sm text-zinc-500">
-          Find a movie and add it to your personal watchlist.
-        </p>
-      </div>
+      <h1
+        class="text-3xl font-semibold tracking-tight sm:text-4xl"
+      >
+        Find something worth watching.
+      </h1>
+
+      <p
+        class="mt-4 max-w-2xl text-sm leading-6 text-zinc-600 dark:text-zinc-400"
+      >
+        Search TV shows, save them to your watchlist,
+        and keep track of what you have already watched.
+      </p>
+
+    </section>
 
 
-      <form id="search-form" class="flex flex-col gap-3 sm:flex-row">
+    <!-- ================= SEARCH ================= -->
+    <section class="mt-10">
 
-        <label for="search-input" class="sr-only">
-          Search movie
+      <form
+        id="search-form"
+        class="flex flex-col gap-3 sm:flex-row"
+      >
+
+        <label
+          for="search-input"
+          class="sr-only"
+        >
+          Search shows
         </label>
 
         <input
           id="search-input"
-          type="text"
-          placeholder="Search movie title..."
+          type="search"
           autocomplete="off"
-          class="min-w-0 flex-1 rounded-lg border border-zinc-800 bg-zinc-900 px-4 py-3 text-sm outline-none placeholder:text-zinc-600 focus:border-amber-500"
-        >
+          placeholder="Search a show..."
+          class="min-w-0 flex-1 rounded-lg border border-zinc-300 bg-white px-4 py-3 text-sm outline-none transition placeholder:text-zinc-400 focus:border-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:placeholder:text-zinc-500 dark:focus:border-zinc-400"
+        />
 
         <button
-          id="search-button"
           type="submit"
-          class="rounded-lg bg-amber-500 px-5 py-3 text-sm font-medium text-zinc-950 transition hover:bg-amber-400"
+          class="rounded-lg bg-zinc-950 px-6 py-3 text-sm font-medium text-white transition hover:bg-zinc-800 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200"
         >
           Search
         </button>
@@ -93,105 +109,96 @@
       </form>
 
 
-      <!-- Search Status -->
+      <!-- Search status -->
       <div
         id="search-status"
-        class="mt-4 min-h-6 text-sm text-zinc-400"
         aria-live="polite"
+        class="mt-4 min-h-5 text-sm text-zinc-500 dark:text-zinc-400"
       ></div>
 
     </section>
 
 
-    <!-- Search Results -->
+    <!-- ================= SEARCH RESULTS ================= -->
     <section class="mt-10">
 
-      <div class="mb-5 flex items-end justify-between gap-4">
+      <div class="mb-5">
 
-        <div>
-          <h2 class="text-xl font-semibold">
-            Search Results
-          </h2>
+        <h2 class="text-lg font-semibold tracking-tight">
+          Search Results
+        </h2>
 
-          <p class="mt-1 text-sm text-zinc-500">
-            Movies returned from the API.
-          </p>
-        </div>
-
-        <span
-          id="result-count"
-          class="text-sm text-zinc-500"
-        >
-          0 results
-        </span>
-
-      </div>
-
-
-      <div
-        id="movie-results"
-        class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-      >
-
-        <!-- Movie cards generated by JavaScript -->
-
-      </div>
-
-
-      <!-- Search Empty State -->
-      <div
-        id="search-empty"
-        class="hidden rounded-lg border border-dashed border-zinc-800 px-6 py-12 text-center"
-      >
-        <p class="font-medium">
-          Search for a movie to get started.
+        <p class="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+          Shows returned from TVMaze.
         </p>
 
-        <p class="mt-1 text-sm text-zinc-500">
-          Results will appear here.
-        </p>
       </div>
+
+
+      <!-- JS will render cards here -->
+      <div
+        id="search-results"
+        class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+      ></div>
 
     </section>
 
 
-    <!-- Watchlist -->
-    <section class="mt-14 border-t border-zinc-800 pt-10">
+    <!-- ================= DIVIDER ================= -->
+    <div
+      class="my-14 border-t border-zinc-200 dark:border-zinc-800"
+    ></div>
 
-      <div class="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+
+    <!-- ================= WATCHLIST ================= -->
+    <section>
+
+      <div
+        class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between"
+      >
 
         <div>
-          <p class="text-sm font-medium text-amber-400">
-            MY LIBRARY
+
+          <p
+            class="text-xs font-medium uppercase tracking-[0.2em] text-zinc-500 dark:text-zinc-400"
+          >
+            Library
           </p>
 
-          <h2 class="mt-1 text-2xl font-semibold">
-            Watchlist
+          <h2
+            class="mt-2 text-2xl font-semibold tracking-tight"
+          >
+            My Watchlist
           </h2>
 
-          <p class="mt-1 text-sm text-zinc-500">
-            Manage the movies you want to watch.
-          </p>
         </div>
 
 
         <!-- Filter -->
-        <div class="flex items-center gap-2">
+        <div class="w-full sm:w-48">
 
           <label
-            for="watchlist-filter"
-            class="text-sm text-zinc-500"
+            for="filter"
+            class="mb-2 block text-xs font-medium text-zinc-500 dark:text-zinc-400"
           >
             Filter
           </label>
 
           <select
-            id="watchlist-filter"
-            class="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm outline-none focus:border-amber-500"
+            id="filter"
+            class="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-sm outline-none dark:border-zinc-700 dark:bg-zinc-900"
           >
-            <option value="all">All</option>
-            <option value="watched">Watched</option>
-            <option value="unwatched">Unwatched</option>
+            <option value="all">
+              All
+            </option>
+
+            <option value="watching">
+              Watching
+            </option>
+
+            <option value="watched">
+              Watched
+            </option>
           </select>
 
         </div>
@@ -199,84 +206,89 @@
       </div>
 
 
-      <!-- Statistics -->
-      <div class="mt-6 grid grid-cols-3 gap-3">
+      <!-- ================= STATISTICS ================= -->
+      <div
+        class="mt-7 grid grid-cols-1 divide-y divide-zinc-200 border-y border-zinc-200 sm:grid-cols-3 sm:divide-x sm:divide-y-0 dark:divide-zinc-800 dark:border-zinc-800"
+      >
 
-        <div class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
-          <p class="text-xs uppercase tracking-wide text-zinc-500">
+        <!-- Total -->
+        <div class="px-4 py-5 sm:px-5">
+
+          <p class="text-xs text-zinc-500 dark:text-zinc-400">
             Total
           </p>
 
           <p
-            id="stat-total"
-            class="mt-2 text-2xl font-semibold"
+            id="total-count"
+            class="mt-1 text-2xl font-semibold"
           >
             0
           </p>
+
         </div>
 
 
-        <div class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
-          <p class="text-xs uppercase tracking-wide text-zinc-500">
+        <!-- Watching -->
+        <div class="px-4 py-5 sm:px-5">
+
+          <p class="text-xs text-zinc-500 dark:text-zinc-400">
+            Watching
+          </p>
+
+          <p
+            id="watching-count"
+            class="mt-1 text-2xl font-semibold"
+          >
+            0
+          </p>
+
+        </div>
+
+
+        <!-- Watched -->
+        <div class="px-4 py-5 sm:px-5">
+
+          <p class="text-xs text-zinc-500 dark:text-zinc-400">
             Watched
           </p>
 
           <p
-            id="stat-watched"
-            class="mt-2 text-2xl font-semibold text-amber-400"
+            id="watched-count"
+            class="mt-1 text-2xl font-semibold"
           >
             0
           </p>
-        </div>
 
-
-        <div class="rounded-lg border border-zinc-800 bg-zinc-900 p-4">
-          <p class="text-xs uppercase tracking-wide text-zinc-500">
-            Unwatched
-          </p>
-
-          <p
-            id="stat-unwatched"
-            class="mt-2 text-2xl font-semibold"
-          >
-            0
-          </p>
         </div>
 
       </div>
 
 
-      <!-- Watchlist Items -->
-      <div
-        id="watchlist"
-        class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
-      >
-
-        <!-- Watchlist cards generated by JavaScript -->
-
-      </div>
-
-
-      <!-- Watchlist Empty -->
+      <!-- ================= EMPTY WATCHLIST ================= -->
       <div
         id="watchlist-empty"
-        class="hidden mt-6 rounded-lg border border-dashed border-zinc-800 px-6 py-12 text-center"
+        class="hidden py-20 text-center"
       >
 
-        <p
-          id="watchlist-empty-title"
-          class="font-medium"
-        >
+        <p class="text-sm font-medium">
           Your watchlist is empty.
         </p>
 
         <p
-          id="watchlist-empty-description"
-          class="mt-1 text-sm text-zinc-500"
+          class="mt-2 text-sm text-zinc-500 dark:text-zinc-400"
         >
-          Add movies from the search results.
+          Search for a show and add it to your library.
         </p>
 
+      </div>
+
+
+      <!-- ================= WATCHLIST ================= -->
+      <div
+        id="watchlist"
+        class="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+      >
+        <!-- JS will render watchlist cards here -->
       </div>
 
     </section>
@@ -284,28 +296,29 @@
   </main>
 
 
-  <!-- Footer -->
-  <footer class="border-t border-zinc-800">
+  <!-- ================= FOOTER ================= -->
+  <footer
+    class="mt-20 border-t border-zinc-200 dark:border-zinc-800"
+  >
 
-    <div class="mx-auto max-w-6xl px-6 py-6">
+    <div
+      class="mx-auto flex max-w-7xl flex-col gap-2 px-5 py-8 text-xs text-zinc-500 dark:text-zinc-400 sm:flex-row sm:items-center sm:justify-between lg:px-8"
+    >
 
-      <div class="flex flex-col gap-2 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+      <p>
+        CineTrack — Roadto100Day JavaScript Day 8
+      </p>
 
-        <p>
-          Movie Tracker
-        </p>
-
-        <p>
-          Vanilla JavaScript · Fetch API · Tailwind CSS
-        </p>
-
-      </div>
+      <p>
+        Data provided by TVMaze
+      </p>
 
     </div>
 
   </footer>
 
 
+  <!-- ================= JAVASCRIPT ================= -->
   <script src="script.js"></script>
 
 </body>

@@ -1,39 +1,54 @@
-# Café POS Lite
+# 🎬 CineTrack — Movie Tracker
 
-A simple café point-of-sale web application built with
-HTML, CSS, and Vanilla JavaScript.
+A simple movie/TV show tracker built with **Vanilla JavaScript** and **TVMaze API**.
 
-## Features
+This project is part of my **Roadto100Day JavaScript Challenge**, focused on strengthening JavaScript fundamentals through practical projects.
 
-- Product listing
-- Search
-- Category filter
-- Shopping cart
-- Quantity management
-- Price calculation
-- Checkout
-- API integration
-- Loading & error handling
+## ✨ Features
 
-## Tech Stack
+* 🔎 Search TV shows using TVMaze API
+* ➕ Add shows to watchlist
+* ✏️ Update watch status
+* 🗑️ Remove shows from watchlist
+* 🔀 Filter watchlist
+* 📊 Watchlist statistics
+* 🌙 Dark / Light mode
+* ⚡ Async/Await & Fetch API
+* 🎨 Tailwind CSS
 
-- HTML
-- CSS
-- JavaScript
-- REST API
+## 🛠️ Tech Stack
 
-## Concepts
+* HTML
+* Tailwind CSS
+* Vanilla JavaScript
+* Fetch API
+* TVMaze API
 
-- Array methods
-- Objects
-- DOM manipulation
-- Event handling
-- Async/Await
-- Fetch API
-- Error handling
+## 🎯 What I'm Practicing
 
-## How to Run
+* DOM Manipulation
+* Events
+* Functions
+* Arrays & Objects
+* Array Methods
+* CRUD
+* Async/Await
+* API Integration
+* Error & Loading States
 
-1. Clone repository
-2. Open index.html
-3. Run with Live Server
+## 📁 Project Structure
+
+```text
+day-08-movie-tracker/
+├── index.html
+├── app.js
+└── README.md
+```
+
+## 🚀 Purpose
+
+Built as a learning project to improve my JavaScript fundamentals and prepare for more advanced frontend development.
+
+## 📡 API
+
+Data provided by [TVMaze](https://www.tvmaze.com/api).
