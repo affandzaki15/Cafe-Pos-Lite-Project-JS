@@ -131,8 +131,8 @@ function tampilData(data) {
 }
 
 // READ
-function renderwatchList() {
-  const readMovie = watchlistData.map((item) => {
+function renderwatchList(data = watchlistData) {
+  const readMovie = data.map((item) => {
     return `
     <div class="group overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-zinc-900 dark:bg-zinc-950">
 
@@ -224,8 +224,12 @@ function renderwatchList() {
 
 function hapusMov(id) {
   const deleteMov = watchlistData.findIndex((item) => item.show.id === id);
-  watchlistData.splice(deleteMov, 1);
-  renderwatchList();
+ if(deleteMov !== -1){
+
+   watchlistData.splice(deleteMov, 1);
+ }
+ 
+ renderwatchList();
   renderStats();
 }
 
@@ -242,6 +246,27 @@ function renderStats() {
   watchedCount.textContent = watched;
   totalCount.textContent = total;
 }
+
+
+// FILTER
+const filtering = document.querySelector("#filter")
+filtering.addEventListener("change", (event)=>{
+  const selectedFilter = event.target.value
+ let filteredData;
+
+ filteredData = watchlistData.filter((item)=>{
+  if(selectedFilter === "watching"){
+   return item.status === "watching"
+  } else if(selectedFilter === "watched"){
+  return item.status === "watched"
+  } else{
+   return true
+  }
+})
+renderwatchList(filteredData)
+})
+
+
 
 searchForm.addEventListener("submit", (event) => {
   event.preventDefault();
